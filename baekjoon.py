@@ -593,22 +593,22 @@
 
 # 반복문에 입력되는 N(사람) 수마다 변수를 다르게 적용할순없나..?
 
-N=int(input())
-A=list(0 for _ in range(N))
+# N=int(input())
+# A=list(0 for _ in range(N))
 
-for i in range(N):
-    x,y,z=map(int,input().split())
-    if x==y and y==z:
-        A[i]=10000+x*1000
-    elif y==z:
-        A[i]=1000+y*100
-    elif x==y:
-        A[i]=1000+x*100
-    elif x==z:
-        A[i]=1000+z*100
-    elif x!=y!=z:
-        A[i]=100*max(x,y,z)
-print(max(A))
+# for i in range(N):
+#     x,y,z=map(int,input().split())
+#     if x==y and y==z:
+#         A[i]=10000+x*1000
+#     elif y==z:
+#         A[i]=1000+y*100
+#     elif x==y:
+#         A[i]=1000+x*100
+#     elif x==z:
+#         A[i]=1000+z*100
+#     elif x!=y!=z:
+#         A[i]=100*max(x,y,z)
+# print(max(A))
 
 # 막히는 부분-------
 # 어떻게 해야 각 i(N=사람수)별로 A의 대소관계를 구분할까?
@@ -647,3 +647,357 @@ print(max(A))
 # get 메소드의 장점은 인자의 key가 없을 시 None값을 출력
 # 하므로 키가 없는 값을 용이하게 파악할 수 있다.
 
+# 2884
+
+# H,M=map(int,input().split())
+
+# answerM=60
+# answerH=24
+
+# if M>=45:
+#     M-=45
+#     print(H,M)
+# else:
+#     M-=45
+#     answerM+=M
+#     if H-1<0:
+#         print(answerH-1,answerM)
+#     else:
+#         print(H-1,answerM)
+    
+
+# 2884 숏코딩
+
+# 나머지(%)를 이용하자 + 음수를 나눈 나머지는 무조건 양수!
+# ex) -5//3 = -2 이고 -5%3=1이다.
+
+# H,M=map(int,input().split())
+
+# M-=45
+# if M<0: H-=1
+# print(H%24,M%60)
+
+# H=0 M=30이라면 M=-15가 되고 H=-1이된다.
+# 여기서 음수를 나눠본 적이 없기에 문제가 발생할 수 있다
+# 하지만 나머지는 양수라는 약속 하에 ★★
+# 각각 몫과 나머지는 -1 과 60-15=45, -1과 24-1=23 이된다.
+
+# 7576
+
+# dish=input()
+
+# answer=10
+
+# for i in range(1,len(dish)):
+#     if dish[i-1]!=dish[i]:  
+#     # 끝번호가 오면 어떻게 끝낼 것인가
+#      # i+1로하면 인덱스 범위를 벗어나게 되 예외가 발생한다.
+#         answer+=10
+#     else:
+#         answer+=5
+# print(answer)
+
+# i+1이 아닌 i-1을 이용하여 인덱스 범위 예외를 해결하였다.
+# 또한 range()의 밤위를 잘 설정하여야 한다.
+# 문자열 '((((' 으로 인덱스 번호는 0 1 2 3 이라는 사실
+# len()을 이용하여 범위를 지정해주는 것도 좋은 방식이다.
+
+# 5063
+
+# N=int(input())
+
+# for i in range(N):
+#     r,e,c=map(int,input().split())
+#     if r<e-c:
+#         print('advertise')
+#     elif r==e-c:
+#         print('does not matter')
+#     elif r>e-c:
+#         print("do not advertise")
+
+# 10102
+
+# V=int(input())
+# Who_Vote_For=input()
+# Who_Vote_For=list(Who_Vote_For)
+
+# if Who_Vote_For.count('A')>Who_Vote_For.count('B'):
+#     print('A')
+# elif Who_Vote_For.count('A')==Who_Vote_For.count('B'):
+#     print('Tie')
+# else:
+#     print('B')
+
+# if A>B 후 elif A==B 하고나서 
+# else의 조건은 자동으로 A<B이다.
+
+# 10886
+
+# N=int(input())
+# Cute_Vote=list(0 for _ in range(N))
+
+# for i in range(N):
+#     # 반복문에 의해 계속해서 초기화가 되어 의도와 다르게 출력
+#     Cute_Vote[i]=int(input())
+# if Cute_Vote.count(1)>Cute_Vote.count(0):
+#     print("Junhee is cute!")
+# else:
+#     print("Junhee is not cute!")
+
+# 리스트형으로 입력되는 원소들은 문자형인듯 하다
+# 따라서 count함수의 인자에 따옴표를 붙어야 한다
+
+# 10988
+
+# S=input()
+# palendrom=0
+
+# for i in range(len(S)):
+#     if S[i]==S[len(S)-1-i]:  # range의 인자 안에는 -1이 되지만 여기서는 -1을 해줘야 index범위를 벗어나지 않는다.
+#         palendrom+=1  # 하지만 반복문에 의해 팰린드롬이라면 1이 계속해서 출력된다..
+#     else:
+#         palendrom+=0
+# if palendrom==len(S):
+#     print(1)
+# else:
+#     print(0)
+
+# 5086
+
+# while True:
+#     A,B=map(int,input().split())
+#     if A==0 and B==0:
+#         break
+#     if B%A==0:
+#         print('factor')
+#     elif A%B==0:
+#         print('multiple')
+#     else:
+#         print('neither')
+
+    # print(A,B,A*x,B*x) # print문을 잘 이용해서 왜 내 의도와 다르게 나왔는 지 추츶해보자.
+        # 문제 발생 : while문에 의해 계속해서 A,B를 판단하기를 의도했는데
+        # 이와 다르게 한 번만 판단하여 else문 조건문을 만족해서 출력해버림
+        # 나머지 (나누기)를 잘 이용해보도록 하자.
+        # 조건을 바꾸면 쉽게 해결되지 않을까? 를 생각..
+        # 처음에 while문을 이용해서 1부터 곱해나가며 B와 같아지는 조건을 생각했으나
+        # 위의 문제가 발생.. 나머지로 수정하면 쉽게 해결..
+
+# 5717
+
+# while True:
+#     a,b=map(int,input().split())
+#     if a==0 and b==0:
+#         break
+#     else:
+#         print(a+b) 
+
+# 9610
+
+# N=int(input())
+
+# q1=0
+# q2=0
+# q3=0
+# q4=0
+# axis=0
+
+# for i in range(N):
+#     A,B=map(int,input().split())
+#     if A>0 and B>0:
+#         q1+=1
+#     elif A<0 and B>0:
+#         q2+=1
+#     elif A<0 and B<0:
+#         q3+=1
+#     elif A>0 and B<0:
+#         q4+=1
+#     else:
+#         axis+=1
+# print('Q1:',q1)
+# print('Q2:',q2)
+# print('Q3:',q3)
+# print('Q4:',q4)
+# print('AXIS:',axis)
+
+# 8958 ★
+
+# X=int(input())
+
+# for _ in range(X):
+#     S=input()
+#     score=0
+#     sum_score=0
+#     for i in range(len(S)): # 문자열의 index를 반복문의 인수로 하는 순간 +1을 생각해주어야 한다.
+#         # 틀린 생각 = 어차피 index 또한 0번부터 세기 떄문에 range(len(S))와 구조가 같다.
+#         if S[i]=='O':  # i=0부터 생각해보자..
+#             score+=1
+#             sum_score+=score
+#         else:
+#             score=0
+#     print(sum_score)
+
+# X=1일 경우 각 S에 따라 출력값은 의도대로 출력되나
+# X=5일 경우 의도와 다르게 출력... 값이 각 case에 계속 영향을 미쳐 더해져나가고 있다..
+# 그래서 제일 밖의 반복문() for _ in range(X): 이 영향을 주는 것 같아
+# score=0 sum_score=0을 반복문 안에 삽입하였다.
+
+# 9506
+
+
+# while True:
+#     x=int(input())
+#     x_factor=[]
+#     sum_factor=0
+#     if x==-1:
+#         break
+#     for i in range(1,x):
+#         if x%i==0:
+#             # 여기서 나오는 i들을 저장할 방법...?
+#             # append 함수 ★★
+#             x_factor.append(i)
+#             sum_factor+=i
+#     if sum_factor==x:
+#         print(x,end=' = ')
+#         for j in range(len(x_factor)):
+#             if j!=len(x_factor)-1:
+#                 print(x_factor[j],end=' + ')
+#             else:
+#                 print(x_factor[j])
+#     else:
+#         print(x,'is NOT perfect.')
+
+
+# 리스트형(x_factor) + 정수형(i) 예외발생
+# 이제부터 리스트의 크기를 정하지 말고 빈 리스트레 append하여 리스트를 생성하자.
+# 반복문과 print문을 잘 활용하자.
+
+# 10162
+
+# T=int(input())
+
+# A=300
+# B=60
+# C=10
+
+# i=0
+# j=0
+# k=0
+
+# while True:
+
+# 10103
+
+# n=int(input())
+# A=100
+# B=100
+
+# for i in range(n):
+#     x,y=map(int,input().split())
+#     if x<y:
+#         A-=y
+#     elif x>y:
+#         B-=x
+#     else:
+#         continue
+# print(A)
+# print(B)
+
+# 10214
+
+# T=int(input())
+# Y_score=0
+# K_score=0
+
+# for i in range(T):
+#     for j in range(1,10):
+#         Y,K=map(int,input().split())
+#         Y_score+=Y
+#         K_score+=K
+#     if Y_score<K_score:
+#         print('Korea')
+#     elif Y_score>K_score:
+#         print('Yonsei')
+#     else:
+#         print('Draw')
+
+# 11557 
+
+# T=int(input())
+
+# for i in range(T):
+#     school_num=int(input())
+#     School_alchol={}
+#     for j in range(school_num):
+#         school_name,L=input().split()
+#         L=int(L)
+#         School_alchol[school_name]=L  # ★
+#     max_school_name=max(School_alchol,key=School_alchol.get)
+#     print(max_school_name)
+    # 두 개를 한 번에 저장할 수 있는 법 -dic형
+    # value 값 중 가장 큰 값의 key를 출력하고싶을 때..
+
+# dic 자료형을 이용하였다.
+# 왜? 두 개의 변수가 서로 관계를 맺고 있었기 때문에 dic형이 필요할 것이라 생각하였다.
+# 빈 딕셔너리에 추가해 나가는 방법은 반 문 안에 '딕셔너리 이름[딕셔너리에 들어갈 key]=그 key에 해당하는 value값'
+# ★★ 최대 value값을 가지는 key값을 출력하는 법
+# print(max(딕셔너리 변수명,key=딕셔너리 변수명.get)
+
+# di={'a':1, 'b':2, 'c':3}
+# max(di,key=di.get)       
+# 11557 - 절차지향적
+
+# T=int(input())
+# for _ in range(T):
+#     N=int(input())
+#     max=0
+#     mName=""
+#     for _ in range(N):
+#         name,num=input().split()
+#         num=int(num)
+#         if(num>max):   # ★ 처음 num이 들어가면서
+#             max=num    # 그 num은 max가 되고..
+#             mName=name  # 그 num에 해당하는 name은 바로 mName에 들어갈 수 있다.
+#     print(mName)      # 반복문에 의해 계속되면서 그 다음 num이 max보다 커지면 그 num은 max가 되고.. 반복..
+
+# 11557 오름차순 이용!
+
+# T=int(input())
+
+# for _ in range(T):
+#     N=int(input())
+#     alcohol=[]
+#     for _ in range(N):
+#         S,L=input().split()
+#         alcohol.append([S,int(L)])
+#     print(alcohol)
+#     alcohol=sorted(alcohol,key=lambda x:x[1])
+#     print(alcohol)
+#     print(alcohol[-1][0])
+
+# 10162
+
+T=int(input())
+
+A=0
+B=0
+C=0
+
+T_mock=T//60
+T_nomuzi=T%60
+
+if T_mock>=5:
+    A+=T_mock//5
+    T_mock%=5
+    B+=T_mock
+    if T_nomuzi%10==0:
+        C+=T_nomuzi//10
+        print(A,B,C)
+    else:
+        print(-1)
+elif T_nomuzi%10!=0:
+    print(-1)
+else:
+    B+=T_mock
+    C+=T_nomuzi//10
+    print(A,B,C)
